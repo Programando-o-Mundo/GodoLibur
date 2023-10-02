@@ -1,5 +1,7 @@
 # GodoLibur - Create 2D Adventure games with the Godot Engine
 
+**Godot Version: 4.1**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
 
