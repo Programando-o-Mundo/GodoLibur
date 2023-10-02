@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://infjlneej3wn"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Test/AudioTest.gd" id="1_uffe2"]
+[ext_resource type="PackedScene" uid="uid://blhidq2xgeihe" path="res://addons/godolibur/SceneHandling/SceneHandler/SceneAudio/AudioManager.tscn" id="2_8morb"]
+
+[node name="AudioTest" type="Node2D"]
+script = ExtResource("1_uffe2")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_8morb")]
+
+[editable path="AudioManager"]

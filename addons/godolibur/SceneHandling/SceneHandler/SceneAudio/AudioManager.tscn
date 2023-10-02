@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://blhidq2xgeihe"]
+
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneHandler/SceneAudio/AudioManager.gd" id="1_xhnai"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_xhnai")
+
+[node name="SceneTheme" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

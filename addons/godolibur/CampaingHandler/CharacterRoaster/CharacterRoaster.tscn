@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd1kp5w1hq6lw"]
+
+[ext_resource type="Script" path="res://addons/godolibur/CampaingHandler/CharacterRoaster/CharacterRoaster.gd" id="1_dpjrf"]
+
+[node name="CharacterRoaster" type="Node"]
+script = ExtResource("1_dpjrf")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ye1nlu0fjpds"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Cutcene/CustomCutcene/CustomCutceneInvoker.gd" id="1_kra7n"]
+
+[node name="CustomCutceneInvoker" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_kra7n")
+
+[connection signal="player_interacted" from="." to="." method="_on_player_interacted"]

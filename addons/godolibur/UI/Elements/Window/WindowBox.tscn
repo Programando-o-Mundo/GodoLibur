@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn5g1nrt2p8vu"]
+
+[ext_resource type="Texture2D" uid="uid://cdqmp21835liy" path="res://addons/godolibur/Assets/windowskin.png" id="1"]
+
+[node name="UiWindow" type="NinePatchRect"]
+offset_right = 62.0
+offset_bottom = 63.0
+texture = ExtResource("1")
+region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 7
+patch_margin_top = 21
+patch_margin_right = 7
+patch_margin_bottom = 7

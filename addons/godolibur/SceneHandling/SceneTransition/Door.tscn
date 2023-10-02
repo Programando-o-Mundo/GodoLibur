@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://us5y8jlo1iye"]
+
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneTransition/Door.gd" id="1"]
+
+[node name="DoorArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1")
+door_locked_text = "The door is locked"

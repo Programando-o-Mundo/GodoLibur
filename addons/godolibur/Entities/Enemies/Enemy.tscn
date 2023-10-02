@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpobdpqfqtrr1"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Entities/Enemies/Enemy.gd" id="1_j1fxx"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_j1fxx")

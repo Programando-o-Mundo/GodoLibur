@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4xrml7d0lcql"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Entities/Player/PlayerCast.gd" id="1_0vekv"]
+
+[node name="PlayerCast" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_0vekv")

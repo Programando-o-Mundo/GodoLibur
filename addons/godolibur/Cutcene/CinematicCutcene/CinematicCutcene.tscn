@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw0c1gxmqj3wa"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Cutcene/CinematicCutcene/CinematicCutcene.gd" id="1"]
+
+[sub_resource type="Animation" id="2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CinematicCutcene/CinematicCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "main"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CinematicCutcene/CinematicCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65vu8"]
+_data = {
+"RESET": SubResource("2"),
+"main": SubResource("4")
+}
+
+[node name="CinematicCutcene" type="AnimationPlayer"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_65vu8")
+}
+script = ExtResource("1")
+
+[node name="CinematicCamera" type="Camera2D" parent="."]
+offset = Vector2(0, -200)
+zoom = Vector2(2, 2)

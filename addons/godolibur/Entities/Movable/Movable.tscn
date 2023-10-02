@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d13j1yevs6dq8"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Entities/Movable/Movable.gd" id="2"]
+
+[node name="Movable" type="CharacterBody2D"]
+script = ExtResource("2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.654957, 22.6587)

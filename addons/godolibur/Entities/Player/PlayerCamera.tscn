@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://crwtkc4d5khwb"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Entities/Player/PlayerCamera.gd" id="1"]
+
+[node name="Camera" type="Camera2D"]
+zoom = Vector2(2, 2)
+script = ExtResource("1")

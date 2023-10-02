@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch00rad7k6jyx"]
+
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneHandler/SceneHandler.gd" id="1_og1u7"]
+
+[node name="SceneHandler" type="Node2D"]
+script = ExtResource("1_og1u7")

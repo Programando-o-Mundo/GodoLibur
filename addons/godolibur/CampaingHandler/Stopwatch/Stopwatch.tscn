@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbh55m620wiqo"]
+
+[ext_resource type="Script" path="res://addons/godolibur/CampaingHandler/Stopwatch/Stopwatch.gd" id="1_8pg4x"]
+
+[node name="Stopwatch" type="Node"]
+script = ExtResource("1_8pg4x")

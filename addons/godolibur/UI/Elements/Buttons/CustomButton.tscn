@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://pbwf8hqu78wh"]
+
+[ext_resource type="PackedScene" uid="uid://b17dhl855h8wj" path="res://addons/godolibur/UI/Elements/UiArrow/UiArrow.tscn" id="1"]
+[ext_resource type="Script" path="res://addons/godolibur/UI/Elements/Buttons/CustomButton.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://shiymigjb3ug" path="res://addons/godolibur/Assets/sound.wav" id="3_deelr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjx3e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itdlh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sf1xd"]
+
+[node name="CustomButton" type="Button"]
+offset_right = 64.0
+offset_bottom = 37.0
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hjx3e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_itdlh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sf1xd")
+text = "Teste"
+flat = true
+alignment = 0
+script = ExtResource("3")
+on_focus_sfx = ExtResource("3_deelr")
+on_pressed_sfx = ExtResource("3_deelr")
+
+[node name="UiArrow" parent="." instance=ExtResource("1")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -5.5
+offset_right = 0.0
+offset_bottom = 4.5
+grow_vertical = 2
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

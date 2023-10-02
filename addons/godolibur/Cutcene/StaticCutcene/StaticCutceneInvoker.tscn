@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://0t6yraybsbnq"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Cutcene/StaticCutcene/StaticCutceneInvoker.gd" id="1_qn5b1"]
+
+[node name="StaticCutceneInvoker" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_qn5b1")
+
+[connection signal="player_interacted" from="." to="." method="_on_player_interacted"]

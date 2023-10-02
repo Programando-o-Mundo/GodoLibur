@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b17dhl855h8wj"]
+
+[ext_resource type="Script" path="res://addons/godolibur/UI/Elements/UiArrow/UiArrow.gd" id="1"]
+
+[sub_resource type="Animation" id="1"]
+resource_name = "Blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941)]
+}
+
+[sub_resource type="Animation" id="Animation_72la1"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul1gb"]
+_data = {
+"Blink": SubResource("1"),
+"RESET": SubResource("Animation_72la1")
+}
+
+[node name="UiArrow" type="TextureRect"]
+offset_right = 6.0
+offset_bottom = 10.0
+script = ExtResource("1")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ul1gb")
+}
