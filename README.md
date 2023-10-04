@@ -31,7 +31,7 @@ Checkout a demo developed using this library:
 ## Download
 
 - Create a ```/addons``` folder in your Godot Project
-- Go to download section and download lastest version
+- Download the [lastest version](https://github.com/Programando-o-Mundo/GodoLibur/releases/tag/V1.0) in this repository's download section
 - Unzip the plugin in the ```/addons``` folder
 - Open the Godot Engine, go to ```Project -> Project Configuration```
 - Open the **Plugins** tab
