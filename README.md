@@ -10,10 +10,34 @@
 **Warning! - This library is currently in a experimental stage, and is very likely you will find bugs if you try to use in your project.**
 **We are trying to clean these bugs as fast as we can, while also creating a documentation for every node in the project**
 
-GodoLibur is a node library for helping Godot developers create 2D Adventure games, with custom nodes specially made to
-solve most common features adventure games has.
+# Summary
 
-## Implemented features
+- [Description](#description)
+- [Download](#download)
+- [Features](#features)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Description
+
+GodoLibur is a node library created to help Godot developers create 2D Adventure games, with custom nodes specially made to
+solve most common features adventure games has. The objective of this library is to speed up the process of creating games
+for these gaming genres by providing nodes that are both ready to use and customizable (if needed) for specific scenarios.
+
+Checkout a demo developed using this library:
+
+[![Demo thumbnail](https://i.imgur.com/EwRgF4H.jpg)](https://youtu.be/xlmQLanqUYw)
+
+## Download
+
+- Create a ```/addons``` folder in your Godot Project
+- Go to download section and download lastest version
+- Unzip the plugin in the ```/addons``` folder
+- Open the Godot Engine, go to ```Project -> Project Configuration```
+- Open the **Plugins** tab
+- Enable the plugin
+
+## Features
 
 Here is a list of the already implemented features:
 
@@ -44,3 +68,11 @@ Here is a list of the already implemented features:
   * Static Cutcenes
   * Cinematic Cutcene
   * Cutcene Scripts (control the dynamics during cutcene)  
+
+## Contributing
+
+If you want to contribute to the project, check it out the [CONTRIBUTING.md](/CONTRIBUTING.md)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
