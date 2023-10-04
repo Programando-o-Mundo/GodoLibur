@@ -6,7 +6,7 @@ signal show_cutcene(cutcene_texture: CompressedTexture2D)
 @export var cutcene_script : GDScript
 
 func _ready():
-	var hud = get_tree().current_scene.get_node("HUD")
+	var hud = CampaingOverseer.current_campaing.get_hud()
 	if not hud:
 		printerr("ERROR! HUD not found!\n")
 		get_tree().quit(1)

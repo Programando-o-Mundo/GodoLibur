@@ -21,13 +21,13 @@ signal correct_item_used(cutcene_name, item)
 @export var password_inputter : PasswordInputter 
 @export var background_color : ColorRect 
 
-var current_campaing : CampaingHandler
+var current_campaing : Campaing
 var password_cutcene_node : PasswordInputter = null
 
 var custom_cutcenes_instances = {}
 
 func _ready():
-	current_campaing = get_tree().current_scene
+	current_campaing = CampaingOverseer.current_campaing
 	dialog_box.visible = false
 	password_inputter.visible = false
 	room_visibility.visible = false

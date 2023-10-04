@@ -84,6 +84,8 @@ func new_scene(new_scene_path : String, spawn_information := {
 		scenes[current_scene.scene_file_path].persisters = current_scene.get_saved_data_from_persisters()
  
 	var next_scene : Scene = load_next_scene(new_scene_path)
+	next_scene.tree_entered.connect(get_tree().set_current_scene.bind(next_scene), CONNECT_ONE_SHOT)
+	
 	next_scene.scene_file_path = new_scene_path
 
 	call_deferred("add_child",next_scene)

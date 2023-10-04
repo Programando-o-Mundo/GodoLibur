@@ -83,4 +83,4 @@ func update_pathfinding():
 	time_accumulator = 0.0
 
 func _on_player_entered(_body : Node2D) -> void:
-	get_tree().current_scene.game_over()
+	CampaingOverseer.current_campaing.game_over()

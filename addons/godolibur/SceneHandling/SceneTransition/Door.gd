@@ -70,7 +70,7 @@ func _ready():
 	if not self.monitoring:
 		return
 		
-	var campaing : CampaingHandler = get_tree().current_scene
+	var campaing : Campaing = get_tree().current_scene
 	
 	if campaing:
 		player_head = campaing.get_player_information()["portrait"]

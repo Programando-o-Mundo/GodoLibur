@@ -1,6 +1,6 @@
 @icon("res://addons/godolibur/Assets/components_icons/map.png")
+class_name Campaing
 extends Node
-class_name CampaingHandler
 
 signal paused_status_changed(status)
 
@@ -21,8 +21,6 @@ var player_head : Texture2D = null
 var in_cutcene := false
 var in_dialog := false 
 var in_menu := false
-
-var campaing_loader = CampaingLoader
 
 func _ready():
 	
@@ -45,8 +43,11 @@ func start_campaing_at_beginning(player_name: String = "") -> void:
 func get_player_inventory() -> PlayerInventory:
 	return player_inventory
 	
+func gui_available_to_show() -> bool:
+	return not in_cutcene and not in_dialog and not in_menu and not is_player_in_pursuit()
+	
 func is_player_in_pursuit() -> bool:
-	return scene_handler.enemy_controller.in_pursuit
+	return scene_handler.enemy_controller.in_pursuit if scene_handler.enemy_controller else false
 	
 func get_player_information() -> Dictionary:
 	return player_inventory.get_player_information()
@@ -64,9 +65,9 @@ func get_scene_handler() -> SceneHandler2D:
 	return scene_handler
 	
 func get_current_time() -> String:
-	return stopwatch.get_current_time_as_string()
+	return stopwatch.get_current_time_as_string() if stopwatch else ""
 
-func get_current_level() -> Scene:
+func get_current_scene() -> Scene:
 	return scene_handler.current_scene
 	
 func get_levels_data() -> Array:
@@ -107,7 +108,7 @@ func to_json() -> Dictionary:
 	
 	var campaing_json := {"campaing_path" : self.scene_file_path}
 	
-	var current_scene = get_current_level()
+	var current_scene = get_current_scene()
 	
 	if current_scene:
 		campaing_json["current_scene_path"] = current_scene.scene_file_path

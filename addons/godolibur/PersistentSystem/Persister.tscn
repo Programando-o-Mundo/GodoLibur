@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxqihwqpytmb5"]
 
-[ext_resource type="Script" path="res://addons/godolibur/Singleton/PersistentSystem/Persister.gd" id="1_kv4wj"]
+[ext_resource type="Script" path="res://addons/godolibur/PersistentSystem/Persister.gd" id="1_kv4wj"]
 
 [node name="Persister" type="Node"]
 script = ExtResource("1_kv4wj")

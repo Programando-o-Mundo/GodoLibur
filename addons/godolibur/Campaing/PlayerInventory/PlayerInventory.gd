@@ -1,6 +1,7 @@
 @icon("res://Assets/components_icons/backpack.png")
-extends Node
 class_name PlayerInventory
+extends Node
+
 
 @export_category("Player Information")
 @export var nickname : String = "Player"

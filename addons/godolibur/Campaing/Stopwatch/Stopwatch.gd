@@ -1,6 +1,7 @@
 @icon("res://addons/godolibur/Assets/components_icons/stopwatch.png")
-extends Node
 class_name Stopwatch
+extends Node
+
 ## A utility node for counting time
 
 @export_enum("Idle", "Physics") var process_callback : String = "Idle" ## Determines weather the processing of elapsed time is calculated during process(_process) or during physics frames(_physics_process)

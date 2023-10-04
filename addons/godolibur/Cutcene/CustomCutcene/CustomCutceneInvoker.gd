@@ -9,7 +9,7 @@ signal give_item_to_cutcene(cutcene, cutcene_name, item)
 @export var inventory_link : InventoryLink
 
 func _ready():
-	var hud = get_tree().current_scene.get_node("HUD")
+	var hud = CampaingOverseer.current_campaing.get_hud()
 	if not hud:
 		printerr("ERROR! HUD not found!\n")
 		get_tree().quit(1)

@@ -8,7 +8,7 @@ signal spawn_enemy()
 
 func _ready() -> void:
 	
-	var scene_handler = get_tree().current_scene.get_scene_handler()
+	var scene_handler = CampaingOverseer.current_campaing.get_scene_handler()
 	if scene_handler == null:
 		get_tree().quit(2)
 		

@@ -29,7 +29,7 @@ func _ready():
 	
 	self.animation_finished.connect(on_animation_finished)
 
-	var campaing : CampaingHandler = get_tree().current_scene
+	var campaing : Campaing = CampaingOverseer.current_campaing
 	
 	var campaing_audio : GameAudioManager = campaing.get_campaing_audio_manager()
 	

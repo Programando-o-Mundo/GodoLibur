@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dysw8fu30xqig"]
 
 [ext_resource type="Script" path="res://addons/godolibur/Entities/Pickable/ItemHolder.gd" id="1_n6sla"]
-[ext_resource type="Script" path="res://addons/godolibur/Singleton/PersistentSystem/Persister.gd" id="4_7qr87"]
+[ext_resource type="Script" path="res://addons/godolibur/PersistentSystem/Persister.gd" id="4_7qr87"]
 
 [node name="ItemHolder" type="Area2D"]
 collision_layer = 4

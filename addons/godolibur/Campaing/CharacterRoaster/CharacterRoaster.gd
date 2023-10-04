@@ -1,6 +1,6 @@
 @icon("res://addons/godolibur/Assets/components_icons/character_icons.png")
-extends Node
 class_name CharacterRoaster
+extends Node
 
 @export var characters : Dictionary
 
@@ -8,7 +8,7 @@ var player_head : Texture2D
 var player_portrait : String
 
 func _ready():
-	var player_inventory = get_tree().current_scene.get_player_inventory()
+	var player_inventory = CampaingOverseer.current_campaing.get_player_inventory()
 	
 	if player_inventory != null:
 		

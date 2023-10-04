@@ -16,11 +16,14 @@ var item_instance : Item
 
 func _ready() -> void:
 	
-	var player_inventory = get_tree().current_scene.get_player_inventory()
+	var current_campaing = CampaingOverseer.current_campaing
+	
+	var player_inventory = current_campaing.get_player_inventory()
 	
 	item_instance = item.new()
 	item_picked.connect(player_inventory.add_item)
-	var hud : HUD = get_tree().current_scene.get_node("HUD")
+	
+	var hud : HUD = current_campaing.get_hud()
 	
 	if not hud:
 		printerr("[%s] ERROR! GUI not found!" % self.name)

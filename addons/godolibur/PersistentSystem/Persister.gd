@@ -5,7 +5,7 @@ class_name Persister
 @export var disabled := false
 
 func _ready():
-	var current_scene = get_tree().current_scene.get_current_level()
+	var current_scene = get_tree().current_scene
 	current_scene.register_persister(self)
 
 func get_valid_parent() -> Node:

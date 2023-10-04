@@ -8,7 +8,7 @@ var player_is_in_area = false
 var player_inventory : PlayerInventory
 
 func _ready():
-	player_inventory = get_tree().current_scene.get_player_inventory()
+	player_inventory = CampaingOverseer.current_campaing.get_player_inventory()
 
 func try_to_use_item(item : Item) -> void:
 	player_used_item.emit(item)

@@ -10,7 +10,8 @@ var is_active : bool = false
 
 func _ready():
 	
-	var hud = get_tree().current_scene.hud
+	var hud = CampaingOverseer.current_campaing.get_hud()
+	
 	if not hud:
 		printerr("[%s] ERROR! GUI not found!" % self.name)
 		return  

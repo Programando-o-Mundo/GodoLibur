@@ -8,7 +8,7 @@ signal show_password_screen(cutcene_texture: CompressedTexture2D, password: Stri
 
 func _ready():
 	
-	var hud = get_tree().current_scene.get_node("HUD")
+	var hud = CampaingOverseer.current_campaing.get_hud()
 	if not hud:
 		printerr("ERROR! HUD not found!\n")
 		get_tree().quit(1)
