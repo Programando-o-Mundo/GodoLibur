@@ -16,8 +16,8 @@ config/icon="res://icon.jpg"
 
 [autoload]
 
-GameSettings="*res://addons/godolibur/Singleton/GameSettings/GameSettings.gd"
-CampaingLoader="*res://addons/godolibur/Singleton/PersistentSystem/CampaingLoader.gd"
+GameSettings="*res://addons/godolibur/GameSettings/GameSettings.gd"
+CampaingOverseer="*res://addons/godolibur/Campaing/CampaingOverseer.gd"
 
 [display]
 
