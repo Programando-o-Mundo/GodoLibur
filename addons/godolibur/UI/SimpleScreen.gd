@@ -1,39 +1,37 @@
 # A generic model for making a simple user interface
 
 extends Control
-class_name SimpleUI
+class_name SimpleScreen
 
 signal exit_screen()
 signal enter_screen()
 signal open_screen()
 signal force_quit()
 
-const SHOW_SCREEN_ANIMATION : = "show_screen"
-const HIDE_SCREEN_ANIMATION : = "hide_screen"
+@export var show_screen_animation_name := "show_screen"
+@export var hide_screen_animation_name : = "hide_screen"
 
 @onready var animation : AnimationPlayer = $Animation
-
-@export var main_screen: bool = false
 
 # If correctly implemented, show the screen through the help of an
 # animation player
 func show_screen() -> void:
 	
-	if not animation_player_and_animation_exist(SHOW_SCREEN_ANIMATION):
+	if not animation_player_and_animation_exist(show_screen_animation_name):
 		return
 		
 	enter_screen.emit()
-	animation.play(SHOW_SCREEN_ANIMATION)
+	animation.play(show_screen_animation_name)
 	
 # If correctly implemented, hide the screen through the help of an
 # animation player
 func hide_screen() -> void:
 	
-	if not animation_player_and_animation_exist(HIDE_SCREEN_ANIMATION):
+	if not animation_player_and_animation_exist(hide_screen_animation_name):
 		return
 
 	exit_screen.emit()
-	animation.play(HIDE_SCREEN_ANIMATION)
+	animation.play(hide_screen_animation_name)
 	
 # Check if the animation player, and the animation specified exist 
 # in the animation player
@@ -45,7 +43,7 @@ func animation_player_and_animation_exist(animation_name : String) -> bool:
 		result = false
 		
 	if not animation.has_animation(animation_name):
-		printerr("Error! The \" " + str(animation_name) + " \" animation was not implemented")	
+		printerr("Error! The \"%s\" animation was not implemented" % animation_name)	
 		result = false
 		
 	return result

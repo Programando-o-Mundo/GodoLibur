@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name HUD
+class_name GameGUI
 
 signal cutcene_started()
 signal cutcene_ended()
@@ -15,7 +15,7 @@ signal correct_item_used(cutcene_name, item)
 @export var player_information : PlayerInventory
 
 @export var dialog_box : DialogBox 
-@export var gui : GameGUI 
+@export var gui_menu : GUIMenu 
 @export var static_cutcene : StaticCutcene 
 @export var room_visibility : RoomVisibility 
 @export var password_inputter : PasswordInputter 

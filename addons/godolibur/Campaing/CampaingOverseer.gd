@@ -1,6 +1,8 @@
 @icon("res://Assets/components_icons/saveload.png")
 extends Node
 
+signal campaing_ready()
+
 var save_scenes_data := []
 var campaing_information := {}
 
@@ -84,3 +86,5 @@ func start_campaing(campaing_path: String, player_information : Dictionary = {})
 		
 	else:
 		current_campaing.load_campaing_state(campaing_information, save_scenes_data)
+		
+	campaing_ready.emit()

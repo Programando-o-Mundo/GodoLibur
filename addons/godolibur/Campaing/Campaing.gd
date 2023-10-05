@@ -1,17 +1,27 @@
+@tool
 @icon("res://addons/godolibur/Assets/components_icons/map.png")
 class_name Campaing
 extends Node
 
 signal paused_status_changed(status)
 
-@export var hud : CanvasLayer
+@export var game_gui : GameGUI :
+	set(new_game_gui):
+		game_gui = new_game_gui
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
+		
 @export var stopwatch : Stopwatch 
 @export var player_inventory : PlayerInventory
 @export var character_roaster : CharacterRoaster
 
 @export_category("Scene handling")
 @export_file("*.tscn") var starting_scene
-@export var scene_handler : SceneHandler2D 
+@export var scene_handler : SceneHandler2D : 
+	set(new_scene_handler):
+		scene_handler = new_scene_handler
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
 
 @export_category("Debug")
 @export var start_at_ready := false
@@ -22,13 +32,36 @@ var in_cutcene := false
 var in_dialog := false 
 var in_menu := false
 
-func _ready():
+func _get_configuration_warnings() -> PackedStringArray:
 	
-	scene_handler.scene_transition_requested.connect(change_cutcene_status.bind(true))
-	scene_handler.scene_transition_completed.connect(change_cutcene_status.bind(false))
+	var errors := []
+	
+	if scene_handler == null:
+		errors.append("Make sure the Campaing has a SceneHandler2D node, this node is necessary!")
+	
+	if game_gui == null:
+		errors.append("Make sure the Campaing has a GameGUI node, this node is necessary!")
+		
+	return errors
+
+
+func _ready() -> void:
+
+	if Engine.is_editor_hint():
+		_tool_ready()
+		return
+		
+	if scene_handler != null:
+		scene_handler.scene_transition_requested.connect(change_cutcene_status.bind(true))
+		scene_handler.scene_transition_completed.connect(change_cutcene_status.bind(false))
 
 	if start_at_ready:
 		start_campaing_at_beginning()
+		
+		
+
+func _tool_ready() -> void:
+	update_configuration_warnings()
 
 func reset_campaing() -> void:
 	player_inventory.clear()
@@ -58,8 +91,8 @@ func has_character_head(character_name: StringName) -> bool:
 func get_character_head(character_name: StringName = "") -> Texture2D:
 	return character_roaster.get_character(character_name)
 	
-func get_hud() -> HUD:
-	return hud
+func get_game_gui() -> GameGUI:
+	return game_gui
 	
 func get_scene_handler() -> SceneHandler2D:
 	return scene_handler
