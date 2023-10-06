@@ -55,10 +55,10 @@ Here is a list of the already implemented features:
   * DialogBox
   * MenuController
   * GameGUI
-    * SimpleScreen ( Create a simple interface management and transition )
-    * CustomControl
+    * CutceneHandler
     * DialogBoxHandler
     * GameMenu
+      * SimpleScreen
     * SceneOverlay
 * Enemy AI and Behavior
 * Movable Objects
