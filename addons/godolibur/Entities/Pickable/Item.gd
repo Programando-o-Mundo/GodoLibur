@@ -1,6 +1,8 @@
 extends RefCounted
 class_name Item
 
+signal correctly_used()
+
 @export var name : String
 @export var description : String 
 @export var texture : ImageTexture = null : set = _set_texture, get = _get_texture

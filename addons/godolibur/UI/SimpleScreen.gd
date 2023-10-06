@@ -17,7 +17,7 @@ signal force_quit()
 # animation player
 func show_screen() -> void:
 	
-	if not animation_player_and_animation_exist(show_screen_animation_name):
+	if not __animation_player_and_animation_exist(show_screen_animation_name):
 		return
 		
 	enter_screen.emit()
@@ -27,7 +27,7 @@ func show_screen() -> void:
 # animation player
 func hide_screen() -> void:
 	
-	if not animation_player_and_animation_exist(hide_screen_animation_name):
+	if not __animation_player_and_animation_exist(hide_screen_animation_name):
 		return
 
 	exit_screen.emit()
@@ -35,7 +35,7 @@ func hide_screen() -> void:
 	
 # Check if the animation player, and the animation specified exist 
 # in the animation player
-func animation_player_and_animation_exist(animation_name : String) -> bool:
+func __animation_player_and_animation_exist(animation_name : String) -> bool:
 	var result : bool = true
 	
 	if animation == null:

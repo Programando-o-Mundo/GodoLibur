@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dvm57rljge0nk"]
+[gd_scene load_steps=2 format=3 uid="uid://dvm57rljge0nk"]
 
-[node name="GUI" type="CanvasLayer"]
+[ext_resource type="Script" path="res://addons/godolibur/UI/GameGUI/GameGUI.gd" id="1_e1mug"]
+
+[node name="GameGUI" type="CanvasLayer"]
+script = ExtResource("1_e1mug")

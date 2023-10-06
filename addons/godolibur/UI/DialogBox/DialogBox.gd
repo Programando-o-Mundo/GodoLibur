@@ -4,6 +4,7 @@ class_name DialogBox
 
 # Signal for when the dialog ends, and send option that
 # the player has chosen
+signal dialog_started()
 signal dialog_ended(option)
 
 # Typing speed for the dialog
@@ -220,6 +221,8 @@ func show_dialog(text : Array ,gui_mode : gui = gui.dialog) -> void:
 	
 	dialog_text.visible_characters = 0
 	animation.play(arrow_animation_name)
+	
+	dialog_started.emit()
 	_add_dialog()
 
 # Display next page
