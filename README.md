@@ -1,6 +1,6 @@
 # GodoLibur - Create 2D Adventure games with the Godot Engine
 
-**Godot Version: 4.1**
+**Godot Version: 4.1.2**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
@@ -41,7 +41,9 @@ Checkout a demo developed using this library:
 
 Here is a list of the already implemented features:
 
-* CampaingHandling
+* CampaingOverseer
+  * Save/Load ( Save and load only the necessary information in a Campaing)  
+* Campaing
   * Campaing Timer (Stopwatch)
 * SceneHandling
   * SceneTransition (Door)
@@ -49,12 +51,15 @@ Here is a list of the already implemented features:
   * EnemyController (Create Intelligent enemies that follow the player through different screens)
   * SceneAudio (Play audio and music with dinamic effects)
   * PlayerInteraction (link with inventory and objects in the Scene)
-* Save/Load ( Save and load only the necessary information in a Campaing)
-* HUD
-  * DialogBox 
-* GUI
-  * SimpleScreen ( Create a simple interface management and transition )
-  * CustomButtons
+* UI
+  * DialogBox
+  * MenuController
+  * GameGUI
+    * SimpleScreen ( Create a simple interface management and transition )
+    * CustomControl
+    * DialogBoxHandler
+    * GameMenu
+    * SceneOverlay
 * Enemy AI and Behavior
 * Movable Objects
 * Pickable Objects
