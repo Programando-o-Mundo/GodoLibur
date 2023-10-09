@@ -42,3 +42,16 @@ func show_text(properties : Dictionary =
 		printerr("[%s]: Incorrect usage of dialog mechanic, dictionary need \"text\" property" % name)
 
 	dialog_box.visible = false
+
+func on_item_picked(item: Item) -> void:
+	self.dialog_open.emit()
+	
+	dialog_box.set_character_name(current_campaing.get_player_information()["nickname"])
+	dialog_box.set_character_portrait(current_campaing.get_character_head())
+	dialog_box.set_vertical_alignment(2)
+	
+	dialog_box.show_dialog(["I found the item, \"%s\"" % item.name])
+	var option = await dialog_box.dialog_ended
+		
+	self.dialog_closed.emit(option)
+	self.dialog_box.visible = false

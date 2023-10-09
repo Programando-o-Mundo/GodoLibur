@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://pbwf8hqu78wh"]
+[gd_scene load_steps=6 format=3 uid="uid://pbwf8hqu78wh"]
 
 [ext_resource type="PackedScene" uid="uid://b17dhl855h8wj" path="res://addons/godolibur/UI/Elements/UiArrow/UiArrow.tscn" id="1"]
 [ext_resource type="Script" path="res://addons/godolibur/UI/Elements/Buttons/CustomButton.gd" id="3"]
-[ext_resource type="AudioStream" uid="uid://shiymigjb3ug" path="res://addons/godolibur/Assets/sound.wav" id="3_deelr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjx3e"]
 
@@ -20,8 +19,6 @@ text = "Teste"
 flat = true
 alignment = 0
 script = ExtResource("3")
-on_focus_sfx = ExtResource("3_deelr")
-on_pressed_sfx = ExtResource("3_deelr")
 
 [node name="UiArrow" parent="." instance=ExtResource("1")]
 layout_mode = 1

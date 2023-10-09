@@ -9,7 +9,7 @@ signal dialog_ended(option)
 
 # Typing speed for the dialog
 @export var typing_speed : = 0.01 # (float,0.05,0.1)
-@export var character_head_texture_default : Texture2D
+@export var dialog_text_font : LabelSettings
 
 # Control the possible modes for exhibition and interaction in the 
 # dialog system
@@ -62,15 +62,15 @@ func _ready() -> void:
 	option1.modulate.a = 0
 	option2.modulate.a = 0
 	
+	if dialog_text_font != null:
+		dialog_text.label_settings = dialog_text_font
+	
 	started = false
 	talking = false
 	
 	# Setting the default dialog character to the 
 	# main character
 	character_name.text    = "Hiroshi"
-	
-	if character_head_texture_default:
-		character_head.texture = character_head_texture_default
 	
 	# Most used alignment in the game (bottom)
 	vertical_space.alignment = VERTICAL_ALIGNMENT_BOTTOM
