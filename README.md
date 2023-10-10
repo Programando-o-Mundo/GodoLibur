@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Godot Engine](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)
 
-![godolibur](https://github.com/Programando-o-Mundo/GodoLibur/assets/9157977/9e241a08-6583-4dd6-a1d8-256647c53482)
+![godolibur](https://i.imgur.com/MFm93VX.jpg)
 
 **Warning! - This library is currently in a experimental stage, and is very likely you will find bugs if you try to use in your project.**
 **We are trying to clean these bugs as fast as we can, while also creating a documentation for every node in the project**
