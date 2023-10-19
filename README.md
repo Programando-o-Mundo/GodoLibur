@@ -78,6 +78,11 @@ Here is a list of the already implemented features:
 
 If you want to contribute to the project, check it out the [CONTRIBUTING.md](/CONTRIBUTING.md)
 
+Or, if you prefer/like...
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/gustavolr035)
+
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
