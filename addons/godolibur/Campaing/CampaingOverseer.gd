@@ -1,4 +1,3 @@
-@icon("res://Assets/components_icons/saveload.png")
 extends Node
 
 signal campaing_ready()
@@ -62,11 +61,11 @@ func load_game(filename: String) -> void:
 		current_campaing.load_campaing_state(campaing_information, save_scenes_data)
 		
 	else:
-		start_campaing(campaing_information.campaing_path)
+		start_campaing_from_file_path(campaing_information.campaing_path)
 		
 	CampaingsFilesManager.close_save(current_save)
-	
-func start_campaing(campaing_path: String, player_information : Dictionary = {}) -> void:
+
+func start_campaing_from_file_path(campaing_filepath: String, player_information : Character = null) -> void:
 
 	var current_scene = get_tree().current_scene
 	
@@ -74,9 +73,23 @@ func start_campaing(campaing_path: String, player_information : Dictionary = {})
 		get_tree().root.remove_child(current_scene)
 		current_scene.queue_free()
 	
-	var campaing_resource := campaing_path
-	current_campaing = load(campaing_resource).instantiate()
+	var campaing_resource = load(campaing_filepath)
+	current_campaing = campaing_resource.instantiate()
+	__setup_campaing(player_information)
 	
+func start_campaing_from_packed_scene(campaing_scene: PackedScene, 
+									  player_information : Character = null) -> void:
+
+	var current_scene = get_tree().current_scene
+	
+	if current_scene:
+		get_tree().root.remove_child(current_scene)
+		current_scene.queue_free()
+	
+	current_campaing = campaing_scene.instantiate()
+	__setup_campaing(player_information)
+	
+func __setup_campaing(player_information: Character) -> void:
 	current_campaing.start_at_ready = false
 
 	get_tree().root.add_child(current_campaing)

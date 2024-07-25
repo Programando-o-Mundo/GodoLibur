@@ -5,23 +5,14 @@ extends Node
 
 signal paused_status_changed(status)
 
-@export var game_gui : GameGUI :
-	set(new_game_gui):
-		game_gui = new_game_gui
-		if Engine.is_editor_hint():
-			update_configuration_warnings()
-		
-@export var stopwatch : Stopwatch 
-@export var player_inventory : PlayerInventory
+@onready var game_gui : GameGUI
+@onready var scene_handler : SceneHandler2D
+@onready var stopwatch : Stopwatch 
+@onready var player_inventory : PlayerInventory
 @export var character_roaster : CharacterRoaster
 
 @export_category("Scene handling")
 @export_file("*.tscn") var starting_scene
-@export var scene_handler : SceneHandler2D : 
-	set(new_scene_handler):
-		scene_handler = new_scene_handler
-		if Engine.is_editor_hint():
-			update_configuration_warnings()
 
 @export_category("Debug")
 @export var start_at_ready := false
@@ -42,8 +33,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if game_gui == null:
 		errors.append("Make sure the Campaing has a GameGUI node, this node is necessary!")
 		
+	if player_inventory == null:
+		errors.append("Your campaing does not have a Player Inventory")
+		
+	if stopwatch == null:
+		errors.append("Your campaing does not have a Stopwatch, total game runtime will not be calculated")
+		
 	return errors
-
 
 func _ready() -> void:
 
@@ -58,7 +54,41 @@ func _ready() -> void:
 	if start_at_ready:
 		start_campaing_at_beginning()
 		
-		
+func _on_child_entered_tree(node):
+	
+	if not Engine.is_editor_hint():
+		return
+	
+	if node is SceneHandler2D:
+		scene_handler = node
+		update_configuration_warnings()
+	elif node is GameGUI:
+		game_gui = node
+		update_configuration_warnings()
+	elif node is PlayerInventory:
+		player_inventory = node
+		update_configuration_warnings()
+	elif node is Stopwatch:
+		stopwatch = node
+		update_configuration_warnings()
+
+func _on_child_exiting_tree(node):
+	
+	if not Engine.is_editor_hint():
+		return
+	
+	if node is SceneHandler2D:
+		scene_handler = null
+		update_configuration_warnings()
+	elif node is GameGUI:
+		game_gui = null
+		update_configuration_warnings()
+	elif node is PlayerInventory:
+		player_inventory = null
+		update_configuration_warnings()
+	elif node is Stopwatch:
+		stopwatch = null
+		update_configuration_warnings()
 
 func _tool_ready() -> void:
 	update_configuration_warnings()
@@ -89,7 +119,7 @@ func has_character_head(character_name: StringName) -> bool:
 	return character_roaster.has_character(character_name)
 	
 func get_character_head(character_name: StringName = "") -> Texture2D:
-	return character_roaster.get_character(character_name)
+	return character_roaster.get_character(character_name).portrait
 	
 func get_game_gui() -> GameGUI:
 	return game_gui

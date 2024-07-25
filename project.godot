@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="GodoLibur"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.jpg"
 
 [autoload]
 
-GameSettings="*res://addons/godolibur/GameSettings/GameSettings.gd"
 CampaingOverseer="*res://addons/godolibur/Campaing/CampaingOverseer.gd"
+GameSettings="*res://addons/godolibur/GameSettings/GameSettings.gd"
 
 [display]
 

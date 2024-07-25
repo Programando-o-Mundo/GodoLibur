@@ -1,4 +1,5 @@
-@icon("res://Assets/components_icons/scene.png")
+@tool
+@icon("res://addons/godolibur/Assets/components_icons/scene.png")
 extends Node2D
 class_name SceneHandler2D
 
@@ -9,9 +10,9 @@ signal scene_changed(current_scene_name)
 signal current_scene_is_dark_room()
 signal current_scene_is_lit()
 
-@export var world_environment : WorldEnvironment
-@export var enemy_controller : EnemyController
-@export var audio_manager : GameAudioManager
+@onready var world_environment : WorldEnvironment
+@onready var enemy_controller : EnemyController
+@onready var audio_manager : GameAudioManager
 
 var current_scene : Scene
 var previous_scene : Scene
@@ -26,8 +27,12 @@ enum SpawnType {
 }
 
 func _ready():
-	enemy_controller.pursuit_started.connect(pursuit_started)
-	enemy_controller.pursuit_ended.connect(pursuit_ended)
+	
+	if enemy_controller != null:
+		enemy_controller.pursuit_started.connect(pursuit_started)
+		enemy_controller.pursuit_ended.connect(pursuit_ended)
+		
+	print(enemy_controller)
 
 func clear():
 	remove_child(current_scene)
@@ -184,10 +189,33 @@ func _find_next_scene_name(door_name : String) -> String:
 	return scene_name
 
 func pursuit_started():
-	
 	audio_manager.play_music(enemy_controller.pursuit_theme)
 	
 func pursuit_ended():
-
 	audio_manager.crossfade_music(current_scene.music)
-	
+
+func _on_child_entered_tree(node):
+	if not Engine.is_editor_hint():
+		return
+		
+	if node is WorldEnvironment:
+		world_environment = node
+		
+	elif node is EnemyController:
+		enemy_controller = node
+		
+	elif node is GameAudioManager:
+		audio_manager = node
+
+func _on_child_exiting_tree(node):
+	if not Engine.is_editor_hint():
+		return
+		
+	if node is WorldEnvironment:
+		world_environment = null
+		
+	elif node is EnemyController:
+		enemy_controller = null
+		
+	elif node is GameAudioManager:
+		audio_manager = null

@@ -1,11 +1,10 @@
-@icon("res://Assets/components_icons/backpack.png")
+@icon("res://addons/godolibur/Assets/components_icons/backpack.png")
 class_name PlayerInventory
 extends Node
 
 
 @export_category("Player Information")
-@export var nickname : String = "Player"
-@export var portrait : String = "PortraitStringName"
+@export var character_information: Character
 @export var icon : CompressedTexture2D
 
 signal item_removed(item)
@@ -32,18 +31,7 @@ func get_json():
 	}
 
 func get_player_information() -> Dictionary:
-	return {
-		"nickname" : nickname,
-		"portrait" : portrait,
-		"icon" : icon
-	}
-
-func get_player_information_as_json() -> Dictionary:
-	return {
-		"nickname" : nickname,
-		"portrait" : portrait,
-		"icon" : icon.resource_path
-	}
+	return character_information.to_json()
 	
 func get_items() -> Array:
 	return items.duplicate()

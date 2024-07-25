@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bb8e77c7dn7tb"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(250, 95)
+theme_override_font_sizes/font_size = 46
+text = "Jogar"

@@ -1,11 +1,17 @@
 @tool
 extends EditorPlugin
 
+var campaing_overseer_autoload_name := "CampaingOverseer"
+var campaing_overseer_autoload_path := "res://addons/godolibur/Campaing/CampaingOverseer.gd"
+
+var game_settings_autoload_name := "GameSettings"
+var game_settings_autoload_path := "res://addons/godolibur/GameSettings/GameSettings.gd"
+
 func _enter_tree():
-	# Initialization of the plugin goes here.
-	pass
+	add_autoload_singleton(campaing_overseer_autoload_name, campaing_overseer_autoload_path)
+	add_autoload_singleton(game_settings_autoload_name, game_settings_autoload_path)
 
 
 func _exit_tree():
-	# Clean-up of the plugin goes here.
-	pass
+	remove_autoload_singleton(campaing_overseer_autoload_name)
+	remove_autoload_singleton(game_settings_autoload_name)

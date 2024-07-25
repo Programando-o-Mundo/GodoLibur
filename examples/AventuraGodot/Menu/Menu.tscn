@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2hw4fj6ghj34"]
+
+[ext_resource type="Script" path="res://examples/AventuraGodot/Menu/Menu.gd" id="1_bdtry"]
+[ext_resource type="PackedScene" uid="uid://bb8e77c7dn7tb" path="res://examples/AventuraGodot/Menu/BotaoMenu.tscn" id="2_d16h3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4v8kj"]
+font_size = 108
+
+[node name="Menu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("1_bdtry")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Titulo"
+label_settings = SubResource("LabelSettings_4v8kj")
+horizontal_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 25
+
+[node name="Jogar" parent="VBox" instance=ExtResource("2_d16h3")]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Carregar" parent="VBox" instance=ExtResource("2_d16h3")]
+layout_mode = 2
+text = "Carregar"
+
+[node name="Opcoes" parent="VBox" instance=ExtResource("2_d16h3")]
+layout_mode = 2
+text = "Opções"
+
+[node name="Button3" parent="VBox" instance=ExtResource("2_d16h3")]
+layout_mode = 2
+text = "Quit"

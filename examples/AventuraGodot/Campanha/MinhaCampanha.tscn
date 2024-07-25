@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbwclruxyf326"]
+
+[ext_resource type="Script" path="res://addons/godolibur/Campaing/Campaing.gd" id="1_74siv"]
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneHandler/SceneHandler.gd" id="2_3w0fs"]
+[ext_resource type="Script" path="res://addons/godolibur/UI/GameGUI/GameGUI.gd" id="3_ejymd"]
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/EnemyController/EnemyController.gd" id="3_n8edj"]
+[ext_resource type="Script" path="res://addons/godolibur/Campaing/Stopwatch/Stopwatch.gd" id="4_uh8yw"]
+[ext_resource type="Script" path="res://addons/godolibur/Campaing/PlayerInventory/PlayerInventory.gd" id="5_ayull"]
+
+[node name="MinhaCampanha" type="Node"]
+script = ExtResource("1_74siv")
+
+[node name="SceneHandler2D" type="Node2D" parent="."]
+script = ExtResource("2_3w0fs")
+
+[node name="EnemyController" type="Node" parent="SceneHandler2D"]
+script = ExtResource("3_n8edj")
+
+[node name="GameGUI" type="CanvasLayer" parent="."]
+script = ExtResource("3_ejymd")
+
+[node name="Stopwatch" type="Node" parent="."]
+script = ExtResource("4_uh8yw")
+
+[node name="PlayerInventory" type="Node" parent="."]
+script = ExtResource("5_ayull")
