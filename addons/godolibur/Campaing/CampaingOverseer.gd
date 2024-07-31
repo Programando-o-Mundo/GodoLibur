@@ -7,6 +7,8 @@ var campaing_information := {}
 
 var current_campaing : Campaing
 
+var in_campaing := false
+
 func _ready() -> void:
 	CampaingsFilesManager.create_save_directory()
 
@@ -65,7 +67,14 @@ func load_game(filename: String) -> void:
 		
 	CampaingsFilesManager.close_save(current_save)
 
-func start_campaing_from_file_path(campaing_filepath: String, player_information : Character = null) -> void:
+func start_campaing_from_file_path(campaing_filepath: String, 
+								   player_information : Character = Character.default_character) -> void:
+
+	if in_campaing:
+		push_error("Error! already started Campaing!")
+		return
+		
+	in_campaing = true
 
 	var current_scene = get_tree().current_scene
 	
@@ -78,7 +87,13 @@ func start_campaing_from_file_path(campaing_filepath: String, player_information
 	__setup_campaing(player_information)
 	
 func start_campaing_from_packed_scene(campaing_scene: PackedScene, 
-									  player_information : Character = null) -> void:
+									  player_information : Character = Character.default_character) -> void:
+
+	if in_campaing:
+		push_error("Error! already started Campaing!")
+		return
+		
+	in_campaing = true
 
 	var current_scene = get_tree().current_scene
 	
@@ -95,7 +110,7 @@ func __setup_campaing(player_information: Character) -> void:
 	get_tree().root.add_child(current_campaing)
 	
 	if campaing_information.is_empty():
-		current_campaing.start_campaing_at_beginning(player_information.nickname)
+		current_campaing.start_campaing_at_beginning(player_information)
 		
 	else:
 		current_campaing.load_campaing_state(campaing_information, save_scenes_data)

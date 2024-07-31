@@ -5,3 +5,15 @@
 [node name="Camera" type="Camera2D"]
 zoom = Vector2(2, 2)
 script = ExtResource("1")
+
+[node name="LimiteInferiorMaior" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LimiteSuperiorMaior" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LimiteInferiorMenor" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LimiteSuperiorMenor" type="Marker2D" parent="."]
+unique_name_in_owner = true

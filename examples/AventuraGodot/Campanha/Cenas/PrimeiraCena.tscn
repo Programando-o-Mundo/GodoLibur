@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxvkbhq1j035v"]
+
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneHandler/Scene.gd" id="1_k1j5y"]
+[ext_resource type="Script" path="res://examples/AventuraGodot/Campanha/Cenas/Player.gd" id="1_tdg38"]
+[ext_resource type="Script" path="res://addons/godolibur/SceneHandling/SceneHandler/Entities.gd" id="2_2llwv"]
+[ext_resource type="PackedScene" uid="uid://crwtkc4d5khwb" path="res://addons/godolibur/Entities/Player/PlayerCamera.tscn" id="4_ceb56"]
+[ext_resource type="Texture2D" uid="uid://b3ra1xdde317p" path="res://icon.jpg" id="4_l68xs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig48q"]
+size = Vector2(35, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhubk"]
+size = Vector2(1274.5, 92)
+
+[node name="PrimeiraCena" type="Node2D" node_paths=PackedStringArray("entities")]
+script = ExtResource("1_k1j5y")
+entities = NodePath("Entities")
+
+[node name="Entities" type="Node2D" parent="."]
+script = ExtResource("2_2llwv")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Entities"]
+position = Vector2(171, 130)
+script = ExtResource("1_tdg38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/CharacterBody2D"]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_ig48q")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/CharacterBody2D"]
+remote_path = NodePath("../../../Camera")
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/CharacterBody2D"]
+position = Vector2(3, 1)
+scale = Vector2(0.132813, 0.136719)
+texture = ExtResource("4_l68xs")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Entities"]
+position = Vector2(5, 604)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/StaticBody2D"]
+position = Vector2(630.75, 69)
+shape = SubResource("RectangleShape2D_jhubk")
+
+[node name="Camera" parent="." instance=ExtResource("4_ceb56")]
+position = Vector2(171, 130)
+
+[node name="LimiteInferiorMaior" parent="Camera" index="0"]
+position = Vector2(2200, 1248)
+
+[node name="LimiteSuperiorMaior" parent="Camera" index="1"]
+position = Vector2(-1189, -716)
+
+[node name="LimiteInferiorMenor" parent="Camera" index="2"]
+position = Vector2(1532, 937)
+
+[node name="LimiteSuperiorMenor" parent="Camera" index="3"]
+position = Vector2(111, -9)
+
+[editable path="Camera"]

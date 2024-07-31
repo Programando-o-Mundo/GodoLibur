@@ -26,13 +26,46 @@ enum SpawnType {
 	AT_SPECIFIED_POSITION
 }
 
-func _ready():
+func _ready() -> void:
+	
+	if Engine.is_editor_hint():
+		_tool_ready()
+		return
+		
+	for child in get_children():
+		if child is WorldEnvironment:
+			world_environment = child
+			
+		elif child is EnemyController:
+			enemy_controller = child
+			
+		elif child is GameAudioManager:
+			audio_manager = child
 	
 	if enemy_controller != null:
 		enemy_controller.pursuit_started.connect(pursuit_started)
 		enemy_controller.pursuit_ended.connect(pursuit_ended)
+
+func _tool_ready() -> void:
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree, CONNECT_PERSIST)
+	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
+		child_exiting_tree.connect(_on_child_exiting_tree, CONNECT_PERSIST)
+	update_configuration_warnings()
+	
+func _get_configuration_warnings() -> PackedStringArray:
+	var errors := []
+	
+	if world_environment == null:
+		errors.append("Make sure to add a WorldEnvironment node")
+	
+	if enemy_controller == null:
+		errors.append("Make sure to add a EnemyController node")
 		
-	print(enemy_controller)
+	if audio_manager == null:
+		errors.append("Your SceneHandler does not have a AudioManager")
+		
+	return errors
 
 func clear():
 	remove_child(current_scene)
@@ -200,12 +233,15 @@ func _on_child_entered_tree(node):
 		
 	if node is WorldEnvironment:
 		world_environment = node
+		update_configuration_warnings()
 		
 	elif node is EnemyController:
 		enemy_controller = node
+		update_configuration_warnings()
 		
 	elif node is GameAudioManager:
 		audio_manager = node
+		update_configuration_warnings()
 
 func _on_child_exiting_tree(node):
 	if not Engine.is_editor_hint():
@@ -213,9 +249,14 @@ func _on_child_exiting_tree(node):
 		
 	if node is WorldEnvironment:
 		world_environment = null
+		update_configuration_warnings()
 		
 	elif node is EnemyController:
 		enemy_controller = null
+		update_configuration_warnings()
 		
 	elif node is GameAudioManager:
 		audio_manager = null
+		update_configuration_warnings()
+		
+

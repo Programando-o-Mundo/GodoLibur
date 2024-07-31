@@ -46,3 +46,5 @@ text = "Opções"
 [node name="Button3" parent="VBox" instance=ExtResource("2_d16h3")]
 layout_mode = 2
 text = "Quit"
+
+[connection signal="pressed" from="VBox/Jogar" to="." method="_on_jogar_pressed"]

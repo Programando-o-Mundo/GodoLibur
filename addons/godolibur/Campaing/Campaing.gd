@@ -12,7 +12,7 @@ signal paused_status_changed(status)
 @export var character_roaster : CharacterRoaster
 
 @export_category("Scene handling")
-@export_file("*.tscn") var starting_scene
+@export var starting_scene : PackedScene : set = _set_starting_scene, get = _get_starting_scene
 
 @export_category("Debug")
 @export var start_at_ready := false
@@ -23,8 +23,44 @@ var in_cutcene := false
 var in_dialog := false 
 var in_menu := false
 
-func _get_configuration_warnings() -> PackedStringArray:
+func _ready() -> void:
 	
+	if Engine.is_editor_hint():
+		_tool_ready()
+		return
+		
+	for child in get_children():
+		if child is GameGUI:
+			game_gui = child
+		elif child is SceneHandler2D:
+			scene_handler = child
+		elif child is Stopwatch:
+			stopwatch = child
+		elif child is PlayerInventory:
+			player_inventory = child
+
+	if scene_handler != null:
+		scene_handler.scene_transition_requested.connect(change_cutcene_status.bind(true))
+		scene_handler.scene_transition_completed.connect(change_cutcene_status.bind(false))
+
+	if start_at_ready:
+		start_campaing_at_beginning(Character.default_character)
+		
+func _tool_ready() -> void:
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree, CONNECT_PERSIST)
+	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
+		child_exiting_tree.connect(_on_child_exiting_tree, CONNECT_PERSIST)
+	update_configuration_warnings()
+	
+func _set_starting_scene(scene: PackedScene) -> void:
+	if scene:
+		starting_scene = scene
+	
+func _get_starting_scene() -> PackedScene:
+	return starting_scene
+	
+func _get_configuration_warnings() -> PackedStringArray:
 	var errors := []
 	
 	if scene_handler == null:
@@ -39,26 +75,15 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if stopwatch == null:
 		errors.append("Your campaing does not have a Stopwatch, total game runtime will not be calculated")
 		
-	return errors
-
-func _ready() -> void:
-
-	if Engine.is_editor_hint():
-		_tool_ready()
-		return
+	if not starting_scene:
+		errors.append("Your campaing does not have a Starting Scene! Make sure to add one!")
 		
-	if scene_handler != null:
-		scene_handler.scene_transition_requested.connect(change_cutcene_status.bind(true))
-		scene_handler.scene_transition_completed.connect(change_cutcene_status.bind(false))
-
-	if start_at_ready:
-		start_campaing_at_beginning()
+	return errors
 		
 func _on_child_entered_tree(node):
-	
 	if not Engine.is_editor_hint():
 		return
-	
+
 	if node is SceneHandler2D:
 		scene_handler = node
 		update_configuration_warnings()
@@ -90,18 +115,19 @@ func _on_child_exiting_tree(node):
 		stopwatch = null
 		update_configuration_warnings()
 
-func _tool_ready() -> void:
-	update_configuration_warnings()
-
 func reset_campaing() -> void:
 	player_inventory.clear()
 	scene_handler.clear()
 
-func start_campaing_at_beginning(player_name: String = "") -> void:
-	if not player_name.is_empty():
-		player_inventory.nickname = player_name
+func start_campaing_at_beginning(player_information: Character) -> void:
+	if not player_information:
+		player_inventory.character_information = player_information
 
-	scene_handler.new_scene(starting_scene)
+	if not starting_scene:
+		printerr("Error! No starting scene was specified! Invalid Campaing!")
+		get_tree().quit(2)
+
+	scene_handler.new_scene(starting_scene.resource_path)
 
 func get_player_inventory() -> PlayerInventory:
 	return player_inventory

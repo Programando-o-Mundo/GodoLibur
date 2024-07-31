@@ -1,11 +1,12 @@
 extends Camera2D
 class_name PlayerCamera
 
-@export_category("Limits")
-@export var topLeftBigger : Marker2D   
-@export var bottomRightBigger : Marker2D   
-@export var topLeftShorter : Marker2D        
-@export var bottomRightShorter : Marker2D    
+
+@onready var topLeftBigger : Marker2D = %LimiteSuperiorMaior
+@onready var bottomRightBigger : Marker2D   = %LimiteInferiorMaior
+
+@onready var topLeftShorter : Marker2D =  %LimiteSuperiorMenor
+@onready var bottomRightShorter : Marker2D  = %LimiteInferiorMenor
 
 """
 # In order set a custom limts for the camera
