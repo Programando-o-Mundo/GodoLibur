@@ -94,6 +94,3 @@ func force_quit_menu() -> void:
 	menu_closed.emit()
 	if menu_animation:
 		menu_animation.play(close_menu_animation)
-
-
-

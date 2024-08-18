@@ -48,9 +48,10 @@ func _ready() -> void:
 		screen.exit_screen.connect(exit_current_screen)
 		screen.force_quit.connect(force_quit_menu)
 
-	main_screen.exit_screen.connect(exit_current_screen)
-	main_screen.force_quit.connect(force_quit_menu)
-	main_screen.open_screen.connect(open_screen)
+	if main_screen:
+		main_screen.exit_screen.connect(exit_current_screen)
+		main_screen.force_quit.connect(force_quit_menu)
+		main_screen.open_screen.connect(open_screen)
 
 func _tool_ready() -> void:
 	update_configuration_warnings()

@@ -31,4 +31,3 @@ func setup_shorter_limits():
 
 func activate():
 	self.make_current()
-

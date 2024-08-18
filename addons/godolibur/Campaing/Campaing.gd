@@ -5,10 +5,10 @@ extends Node
 
 signal paused_status_changed(status)
 
-@onready var game_gui : GameGUI
-@onready var scene_handler : SceneHandler2D
-@onready var stopwatch : Stopwatch 
-@onready var player_inventory : PlayerInventory
+@export_storage var game_gui : GameGUI
+@export_storage var scene_handler : SceneHandler2D
+@export_storage var stopwatch : Stopwatch 
+@export_storage var player_inventory : PlayerInventory
 @export var character_roaster : CharacterRoaster
 
 @export_category("Scene handling")
@@ -28,16 +28,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		_tool_ready()
 		return
-		
-	for child in get_children():
-		if child is GameGUI:
-			game_gui = child
-		elif child is SceneHandler2D:
-			scene_handler = child
-		elif child is Stopwatch:
-			stopwatch = child
-		elif child is PlayerInventory:
-			player_inventory = child
 
 	if scene_handler != null:
 		scene_handler.scene_transition_requested.connect(change_cutcene_status.bind(true))
@@ -48,9 +38,9 @@ func _ready() -> void:
 		
 func _tool_ready() -> void:
 	if not child_entered_tree.is_connected(_on_child_entered_tree):
-		child_entered_tree.connect(_on_child_entered_tree, CONNECT_PERSIST)
+		child_entered_tree.connect(_on_child_entered_tree)
 	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
-		child_exiting_tree.connect(_on_child_exiting_tree, CONNECT_PERSIST)
+		child_exiting_tree.connect(_on_child_exiting_tree)
 	update_configuration_warnings()
 	
 func _set_starting_scene(scene: PackedScene) -> void:

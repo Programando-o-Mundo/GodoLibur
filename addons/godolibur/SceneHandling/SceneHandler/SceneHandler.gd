@@ -259,4 +259,3 @@ func _on_child_exiting_tree(node):
 		audio_manager = null
 		update_configuration_warnings()
 		
-

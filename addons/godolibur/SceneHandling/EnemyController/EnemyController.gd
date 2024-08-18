@@ -151,4 +151,3 @@ func _on_spawn_timer_timeout() -> void:
 		spawn_timer.start(randf_range(0.3,0.6))
 	else: 
 		spawn_timer.stop()
-
