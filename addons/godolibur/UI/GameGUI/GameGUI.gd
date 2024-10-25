@@ -2,17 +2,17 @@
 extends CanvasLayer
 class_name GameGUI
 
-@export var cutcene_handler : Control
-@export var dialog_box_handler : Control
-
 signal menu_opened()
 signal menu_closed()
 signal menu_screen_changed(screen_name)
 
 @export var open_gui_command : StringName = "ui_home"
 
+@export_storage var cutcene_handler : CutceneHandler
+@export_storage var dialog_box_handler : DialogBox
+
 @export_category("Screens")
-@export var screens : Array[SimpleScreen]
+@export_storage var screens : Array[SimpleScreen]
 @export var main_screen : SimpleScreen :
 	set(new_main_screen):
 		main_screen = new_main_screen
@@ -21,7 +21,7 @@ signal menu_screen_changed(screen_name)
 			
 			
 @export_category("Animations")
-@export var menu_animation : AnimationPlayer
+@export_storage var menu_animation : AnimationPlayer
 @export var open_menu_animation : String = "open"
 @export var close_menu_animation : String = "close"
 
@@ -33,6 +33,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 	
 	if main_screen == null:
 		errors.append("Make sure a main screen specified, its necessary!")
+		
+	if menu_animation == null:
+		errors.append("No animation player was specified, if you want animations, add one!")
 		
 	return errors
 
@@ -54,7 +57,43 @@ func _ready() -> void:
 		main_screen.open_screen.connect(open_screen)
 
 func _tool_ready() -> void:
+	if not child_entered_tree.is_connected(_on_child_entered_tree):
+		child_entered_tree.connect(_on_child_entered_tree)
+	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
+		child_exiting_tree.connect(_on_child_exiting_tree)
 	update_configuration_warnings()
+
+func _on_child_entered_tree(node):
+	if not Engine.is_editor_hint():
+		return
+
+	if node is SimpleScreen:
+		screens.append(node)
+		update_configuration_warnings()
+		
+	elif node is CutceneHandler:
+		cutcene_handler = node
+		update_configuration_warnings()
+		
+	elif node is DialogBox:
+		dialog_box_handler = node
+		update_configuration_warnings()
+		
+func _on_child_exiting_tree(node):
+	if not Engine.is_editor_hint():
+		return
+
+	if node is SceneHandler2D:
+		screens.erase(node)
+		update_configuration_warnings()
+		
+	elif node is CutceneHandler:
+		cutcene_handler = null
+		update_configuration_warnings()
+		
+	elif node is DialogBox:
+		dialog_box_handler = null
+		update_configuration_warnings()
 
 func _input(event : InputEvent ) -> void:
 

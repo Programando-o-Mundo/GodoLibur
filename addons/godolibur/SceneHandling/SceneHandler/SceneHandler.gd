@@ -10,9 +10,9 @@ signal scene_changed(current_scene_name)
 signal current_scene_is_dark_room()
 signal current_scene_is_lit()
 
-@onready var world_environment : WorldEnvironment
-@onready var enemy_controller : EnemyController
-@onready var audio_manager : GameAudioManager
+@export_storage var world_environment : WorldEnvironment
+@export_storage var enemy_controller : EnemyController
+@export_storage var audio_manager : GameAudioManager
 
 var current_scene : Scene
 var previous_scene : Scene
@@ -32,25 +32,15 @@ func _ready() -> void:
 		_tool_ready()
 		return
 		
-	for child in get_children():
-		if child is WorldEnvironment:
-			world_environment = child
-			
-		elif child is EnemyController:
-			enemy_controller = child
-			
-		elif child is GameAudioManager:
-			audio_manager = child
-	
 	if enemy_controller != null:
 		enemy_controller.pursuit_started.connect(pursuit_started)
 		enemy_controller.pursuit_ended.connect(pursuit_ended)
 
 func _tool_ready() -> void:
 	if not child_entered_tree.is_connected(_on_child_entered_tree):
-		child_entered_tree.connect(_on_child_entered_tree, CONNECT_PERSIST)
+		child_entered_tree.connect(_on_child_entered_tree)
 	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
-		child_exiting_tree.connect(_on_child_exiting_tree, CONNECT_PERSIST)
+		child_exiting_tree.connect(_on_child_exiting_tree)
 	update_configuration_warnings()
 	
 func _get_configuration_warnings() -> PackedStringArray:
@@ -122,11 +112,10 @@ func new_scene(new_scene_path : String, spawn_information := {
 		scenes[current_scene.scene_file_path].persisters = current_scene.get_saved_data_from_persisters()
  
 	var next_scene : Scene = load_next_scene(new_scene_path)
-	next_scene.tree_entered.connect(get_tree().set_current_scene.bind(next_scene), CONNECT_ONE_SHOT)
+	
+	add_child.call_deferred(next_scene)
 	
 	next_scene.scene_file_path = new_scene_path
-
-	call_deferred("add_child",next_scene)
 	
 	if spawn_information.has("door_name"):
 		spawn_information.door_name = _find_next_scene_name(spawn_information.door_name)
@@ -134,12 +123,12 @@ func new_scene(new_scene_path : String, spawn_information := {
 	if spawn_information.has("sound_effect"):
 		audio_manager.play_sfx(spawn_information.sound_effect) 
 		
-	next_scene.call_deferred("spawn_player", spawn_information)
+	next_scene.spawn_player.call_deferred(spawn_information)
 	
 	#var enemies = enemy_controller.get_enemies()
 	
 	if current_scene != null:
-		call_deferred("remove_child", current_scene)
+		remove_child.call_deferred(current_scene)
 
 	set_scene_environment(next_scene.scene_environment)
 	
@@ -154,11 +143,11 @@ func new_scene(new_scene_path : String, spawn_information := {
 	current_scene = next_scene
 
 	if not current_scene.has_loaded_once and current_scene_has_persistent_data(new_scene_path):
-		current_scene.call_deferred("load_data_from_persisters",(scenes[new_scene_path].persisters))
-		
+		current_scene.load_data_from_persisters.call_deferred(scenes[new_scene_path].persisters)
+	
 	current_scene.start_scene()
 	
-	current_scene.call_deferred("emit_signal","scene_ready")
+	current_scene.scene_ready.emit.call_deferred()
 	scene_changed.emit(current_scene.name)
 	
 	scene_transition_completed.emit()

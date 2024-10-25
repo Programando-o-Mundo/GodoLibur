@@ -1,4 +1,4 @@
-@icon("res://Assets/components_icons/cinematic_cutcene.png")
+@icon("res://addons/godolibur/Assets/components_icons/cinematic_cutcene.png")
 extends AnimationPlayer
 class_name CinematicCutcene
 ## A node for creating cutcenes that contains a variety of action

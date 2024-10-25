@@ -42,6 +42,14 @@ position = Vector2(5, 604)
 position = Vector2(630.75, 69)
 shape = SubResource("RectangleShape2D_jhubk")
 
+[node name="Sprite2D" type="Sprite2D" parent="Entities/StaticBody2D"]
+texture_repeat = 2
+position = Vector2(632, 70)
+scale = Vector2(0.418211, 0.370008)
+texture = ExtResource("4_l68xs")
+region_enabled = true
+region_rect = Rect2(1, 1, 3143, 250)
+
 [node name="Camera" parent="." instance=ExtResource("4_ceb56")]
 position = Vector2(171, 130)
 

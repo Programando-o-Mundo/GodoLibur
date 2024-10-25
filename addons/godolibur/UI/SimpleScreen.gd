@@ -11,7 +11,7 @@ signal force_quit()
 @export var show_screen_animation_name := "show_screen"
 @export var hide_screen_animation_name : = "hide_screen"
 
-@onready var animation : AnimationPlayer = $Animation
+@export_storage var animation : AnimationPlayer
 
 # If correctly implemented, show the screen through the help of an
 # animation player
@@ -47,4 +47,3 @@ func __animation_player_and_animation_exist(animation_name : String) -> bool:
 		result = false
 		
 	return result
-

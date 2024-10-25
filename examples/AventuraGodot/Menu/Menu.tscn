@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2hw4fj6ghj34"]
+[gd_scene load_steps=5 format=3 uid="uid://c2hw4fj6ghj34"]
 
 [ext_resource type="Script" path="res://examples/AventuraGodot/Menu/Menu.gd" id="1_bdtry"]
+[ext_resource type="PackedScene" uid="uid://dbwclruxyf326" path="res://examples/AventuraGodot/Campanha/MinhaCampanha.tscn" id="2_8c4cn"]
 [ext_resource type="PackedScene" uid="uid://bb8e77c7dn7tb" path="res://examples/AventuraGodot/Menu/BotaoMenu.tscn" id="2_d16h3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4v8kj"]
@@ -17,6 +18,7 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 script = ExtResource("1_bdtry")
+campaing = ExtResource("2_8c4cn")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

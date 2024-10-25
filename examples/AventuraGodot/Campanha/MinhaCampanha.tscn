@@ -7,23 +7,17 @@
 [ext_resource type="Script" path="res://addons/godolibur/Campaing/Stopwatch/Stopwatch.gd" id="4_uh8yw"]
 [ext_resource type="Script" path="res://addons/godolibur/Campaing/PlayerInventory/PlayerInventory.gd" id="5_ayull"]
 
-[node name="MinhaCampanha" type="Node"]
+[node name="MinhaCampanha" type="Node" node_paths=PackedStringArray("game_gui", "scene_handler", "stopwatch", "player_inventory")]
 script = ExtResource("1_74siv")
-game_gui = Object(CanvasLayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","layer":1,"visible":true,"offset":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"transform":Transform2D(1, 0, 0, 1, 0, 0),"follow_viewport_enabled":false,"follow_viewport_scale":1.0,"script":ExtResource("3_ejymd"),"cutcene_handler":null,"dialog_box_handler":null,"open_gui_command":&"ui_home","screens":Array[Resource("res://addons/godolibur/UI/SimpleScreen.gd")]([]),"main_screen":null,"menu_animation":null,"open_menu_animation":"open","close_menu_animation":"close","current_ui":null)
-
-scene_handler = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("2_3w0fs"),"world_environment":null,"enemy_controller":null,"audio_manager":null,"current_scene":null,"previous_scene":null,"scene_environment":null,"scenes":{})
-
-stopwatch = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_uh8yw"),"process_callback":"Idle","autostart":false,"starting_time":0.0)
-
-player_inventory = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_ayull"),"character_information":null,"icon":null)
-
+game_gui = NodePath("")
+scene_handler = NodePath("SceneHandler2D")
+stopwatch = NodePath("")
+player_inventory = NodePath("")
 starting_scene = ExtResource("2_tn0ch")
+start_at_ready = true
 
 [node name="GameGUI" type="CanvasLayer" parent="."]
 script = ExtResource("3_ejymd")
-
-[node name="SceneHandler2D" type="Node2D" parent="."]
-script = ExtResource("2_3w0fs")
 
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("5_ayull")
@@ -31,5 +25,5 @@ script = ExtResource("5_ayull")
 [node name="Stopwatch" type="Node" parent="."]
 script = ExtResource("4_uh8yw")
 
-[connection signal="child_entered_tree" from="SceneHandler2D" to="SceneHandler2D" method="_on_child_entered_tree"]
-[connection signal="child_exiting_tree" from="SceneHandler2D" to="SceneHandler2D" method="_on_child_exiting_tree"]
+[node name="SceneHandler2D" type="Node2D" parent="."]
+script = ExtResource("2_3w0fs")

@@ -5,10 +5,10 @@ extends Node
 
 signal paused_status_changed(status)
 
-@export_storage var game_gui : GameGUI
-@export_storage var scene_handler : SceneHandler2D
-@export_storage var stopwatch : Stopwatch 
-@export_storage var player_inventory : PlayerInventory
+@export var game_gui : GameGUI
+@export var scene_handler : SceneHandler2D
+@export var stopwatch : Stopwatch 
+@export var player_inventory : PlayerInventory
 @export var character_roaster : CharacterRoaster
 
 @export_category("Scene handling")
@@ -37,10 +37,8 @@ func _ready() -> void:
 		start_campaing_at_beginning(Character.default_character)
 		
 func _tool_ready() -> void:
-	if not child_entered_tree.is_connected(_on_child_entered_tree):
-		child_entered_tree.connect(_on_child_entered_tree)
-	if not child_exiting_tree.is_connected(_on_child_exiting_tree):
-		child_exiting_tree.connect(_on_child_exiting_tree)
+	child_entered_tree.connect(_on_child_entered_tree)
+	child_exiting_tree.connect(_on_child_exiting_tree)
 	update_configuration_warnings()
 	
 func _set_starting_scene(scene: PackedScene) -> void:
@@ -57,7 +55,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		errors.append("Make sure the Campaing has a SceneHandler2D node, this node is necessary!")
 	
 	if game_gui == null:
-		errors.append("Make sure the Campaing has a GameGUI node, this node is necessary!")
+		errors.append("Make sure the Campaing has a GameGUI node, this node is necessary for creating a user interface!")
 		
 	if player_inventory == null:
 		errors.append("Your campaing does not have a Player Inventory")
@@ -76,15 +74,19 @@ func _on_child_entered_tree(node):
 
 	if node is SceneHandler2D:
 		scene_handler = node
+		notify_property_list_changed()
 		update_configuration_warnings()
 	elif node is GameGUI:
 		game_gui = node
+		notify_property_list_changed()
 		update_configuration_warnings()
 	elif node is PlayerInventory:
 		player_inventory = node
+		notify_property_list_changed()
 		update_configuration_warnings()
 	elif node is Stopwatch:
 		stopwatch = node
+		notify_property_list_changed()
 		update_configuration_warnings()
 
 func _on_child_exiting_tree(node):
@@ -104,6 +106,8 @@ func _on_child_exiting_tree(node):
 	elif node is Stopwatch:
 		stopwatch = null
 		update_configuration_warnings()
+		
+	notify_property_list_changed()
 
 func reset_campaing() -> void:
 	player_inventory.clear()
